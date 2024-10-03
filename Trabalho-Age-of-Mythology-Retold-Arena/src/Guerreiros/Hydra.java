@@ -4,24 +4,15 @@
  */
 package Guerreiros;
 
-/**
- *
- * @author LUIS DAS ARTIMANHAS
- */
-public class Ciclope extends TipoGuerreiro{
+public class Hydra extends TipoGuerreiro{
     private int dano = 35;
 
-    public Ciclope(String nome, int idade, float peso) {
+    public Hydra(String nome, int idade, float peso) {
         super(nome, idade, peso);
-    }
-
-    public int getDano() {
-        return dano;
     }
 
     @Override
     public void ataque(TipoGuerreiro atacante, TipoGuerreiro vitima) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }

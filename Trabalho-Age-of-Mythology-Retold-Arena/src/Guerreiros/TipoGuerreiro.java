@@ -8,14 +8,15 @@ package Guerreiros;
  *
  * @author LUIS DAS ARTIMANHAS
  */
-public class Guerreiro {
+public abstract class TipoGuerreiro {
 
     private String nome;
     private int idade;
     private float peso;
     private int energia = 100;
+    private int dano = 0;
 
-    public Guerreiro(String nome, int idade, float peso) {
+    public TipoGuerreiro(String nome, int idade, float peso) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
@@ -37,6 +38,10 @@ public class Guerreiro {
         return idade;
     }
 
+    public int getDano() {
+        return dano;
+    }
+
     public void setIdade(int idade) {
         this.idade = idade;
     }
@@ -48,5 +53,7 @@ public class Guerreiro {
     public void setPeso(float peso) {
         this.peso = peso;
     }
+    
+    public abstract void ataque(TipoGuerreiro atacante,TipoGuerreiro vitima); 
 
 }
