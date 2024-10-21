@@ -2,20 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Guerreiros;
+package Guerreiros.Gregos;
+
+import Guerreiros.*;
 
 /**
  *
  * @author LUIS DAS ARTIMANHAS
  */
-public abstract class TipoGuerreiro {
+public abstract class TipoGuerreiroGregos {
 
     private String nome;
     private int idade;
     private float peso;
     private int energia = 100;
 
-    public TipoGuerreiro(String nome, int idade, float peso) {
+    public TipoGuerreiroGregos(String nome, int idade, float peso) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
@@ -49,6 +51,6 @@ public abstract class TipoGuerreiro {
         this.peso = peso;
     }
     
-    public abstract void ataque(TipoGuerreiro atacante,TipoGuerreiro vitima); 
+    public abstract void ataque(TipoGuerreiroGregos atacante,TipoGuerreiroGregos vitima); 
 
 }
