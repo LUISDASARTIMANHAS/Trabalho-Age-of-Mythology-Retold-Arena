@@ -4,10 +4,15 @@
  */
 package Guerreiros.Egipcios;
 
-/**
- *
- * @author 2023122760328
- */
-public class HomemEscorpião {
-    
+
+public class HomemEscorpiao extends TipoGuerreiroEgipicios {
+
+    public HomemEscorpiao(String nome, int idade, float peso) {
+        super(nome, idade, peso);
+    }
+
+    @Override
+    public void ataque(TipoGuerreiroEgipicios atacante, TipoGuerreiroEgipicios vitima) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

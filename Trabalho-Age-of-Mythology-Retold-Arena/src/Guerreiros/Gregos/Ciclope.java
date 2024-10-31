@@ -5,7 +5,6 @@
 package Guerreiros.Gregos;
 
 import Guerreiros.TipoGuerreiro;
-import Guerreiros.TipoGuerreiro;
 
 /**
  *
@@ -18,8 +17,14 @@ public class Ciclope extends TipoGuerreiro{
     }
 
     @Override
-    public void ataque(TipoGuerreiro atacante, TipoGuerreiro vitima) {
+    public void ataque(Arena.Arena arena) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void onEntityDie(Arena.Arena arena) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

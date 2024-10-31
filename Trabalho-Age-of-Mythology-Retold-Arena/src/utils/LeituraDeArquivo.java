@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package leituradearquivo;
+package utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,20 +14,26 @@ public class LeituraDeArquivo {
         try {
             FileInputStream file = new FileInputStream(localFile);
             Scanner scan = new Scanner(file);
+            Console.log("INFO: Arquivo " + localFile + "Aberto. Bom Uso!");
             return scan;
         } catch (FileNotFoundException error) {
-            System.out.println("Erro: Arquivo Não Encontrado. ERR:" + error);
+            Console.error("Erro: Arquivo Não Encontrado. ERR:" + error);
         }
         return null;
     }
+    public static int fReadInt(Scanner file) {
+            int valor = file.nextInt();
+            return valor;
+    }
+    public static double fReadDouble(Scanner file) {
+            double valor = file.nextDouble();
+            return valor;
+    }
 
     public static void main(String[] args) {
-            var file = fopen("arq.txt");
-            int num1 = file.nextInt();
-            int num2 = file.nextInt();
-            double num3 = file.nextDouble();
-            System.out.println(num1 + num2);
-            System.out.println(num3);
+            Scanner file = fopen("arq.txt");
+            int num1 = fReadInt(file);
+            System.out.println(num1);
             file.close();
     }
     
