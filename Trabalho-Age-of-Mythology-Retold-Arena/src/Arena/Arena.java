@@ -4,7 +4,11 @@
  */
 package Arena;
 
+import java.util.LinkedList;
+
 public class Arena {
+    private LinkedList db;
+    private LinkedList low;
     public static void main(String[] args) {
         // TODO code application logic here
     }
