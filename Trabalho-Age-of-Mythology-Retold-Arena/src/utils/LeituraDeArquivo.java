@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
@@ -7,6 +7,7 @@ package utils;
 
 import Arena.Arena;
 import Arena.FilaManagerDeGuerreiros;
+import Guerreiros.Nordicos.GiganteDePedra;
 import Guerreiros.TipoGuerreiro;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,11 +61,11 @@ public class LeituraDeArquivo {
     }
 
     // Método para criar um guerreiro baseado no tipo (você pode expandir com outros tipos de guerreiros)
-    public static TipoGuerreiro criarGuerreiro(int tipo, String nome, int idade, int peso) {
+    public static GiganteDePedra criarGuerreiro(int tipo, String nome, int idade, int peso) {
         // Criação de guerreiros baseados no tipo (por exemplo, tipo 1 cria um GuerreiroFísico)
         switch (tipo) {
             case 1:
-                return new GuerreiroFísico(nome, idade, peso, null);  // Criando um guerreiro físico, associando à arena depois
+                return new GiganteDePedra("a", 10, 23.25);
             // Adicionar mais tipos de guerreiros conforme necessário
             default:
                 System.out.println("Tipo de guerreiro desconhecido.");
