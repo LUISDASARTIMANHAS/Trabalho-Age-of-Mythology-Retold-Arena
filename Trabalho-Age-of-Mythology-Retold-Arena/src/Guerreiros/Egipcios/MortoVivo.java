@@ -4,6 +4,23 @@
  */
 package Guerreiros.Egipcios;
 
-public class MortoVivo {
+import Arena.Arena;
+
+public class MortoVivo extends TipoGuerreiroEgipicios {
+//    O morto-vivo “nasce” com o nome, idade e peso do guerreiro adversário morto
+    
+    public MortoVivo(String nome, int idade, float peso) {
+        super(nome, idade, peso);
+    }
+
+    @Override
+    public void ataque(Arena arena) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void onEntityDie(Arena arena) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
