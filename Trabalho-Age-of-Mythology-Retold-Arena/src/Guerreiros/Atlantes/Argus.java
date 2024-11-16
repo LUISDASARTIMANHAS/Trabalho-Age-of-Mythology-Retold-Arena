@@ -16,7 +16,7 @@ public class Argus extends TipoGuerreiroAtlantes{
     //imediatamente independente da energia do inimigo. Argus também é frágil e sua energia
     //começa em 60 pontos.
     
-    public Argus(String nome, int idade, float peso) {
+    public Argus(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

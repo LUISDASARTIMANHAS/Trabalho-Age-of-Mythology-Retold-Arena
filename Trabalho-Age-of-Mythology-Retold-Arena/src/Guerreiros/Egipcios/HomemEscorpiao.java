@@ -17,7 +17,7 @@ public class HomemEscorpiao extends TipoGuerreiroEgipicios {
 //de retirar 5 pontos de energia continua até a morte do adversário, mas sem acréscimo de taxa
 //de morte.
     
-    public HomemEscorpiao(String nome, int idade, float peso) {
+    public HomemEscorpiao(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

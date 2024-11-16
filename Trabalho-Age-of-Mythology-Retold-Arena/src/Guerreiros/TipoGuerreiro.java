@@ -25,13 +25,13 @@ public abstract class TipoGuerreiro {
 
     private String nome;
     private int idade;
-    private float peso;
+    private double peso;
     private int energia = 100;
     private boolean entityEnvenenada = false;
     private boolean entityRegenerar = false;
     private boolean entityDie = false;
 
-    public TipoGuerreiro(String nome, int idade, float peso) {
+    public TipoGuerreiro(String nome, int idade, double peso) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
@@ -57,11 +57,11 @@ public abstract class TipoGuerreiro {
         this.idade = idade;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
@@ -78,6 +78,16 @@ public abstract class TipoGuerreiro {
         if (energia <= 0) {
             energia = 0;
         }
+    }
+    
+    // Sobrescrevendo o método toString na classe base
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" + // Nome da classe (ex. Ciclope, Manticora, etc.)
+                "Nome='" + nome + '\'' +
+                ", Idade=" + idade +
+                ", Peso=" + peso +
+                '}';
     }
 
     public abstract void ataque(Arena arena);

@@ -18,7 +18,7 @@ public class LoboDeFenris extends TipoGuerreiroNordicos {
 //(8 para cada lobo) totalizando 56 pontos de ataque. É importante notar que essa mudança é
 //dinâmica, ou seja, se um lobo morre o processo precisa ser recalculado.
 
-    public LoboDeFenris(String nome, int idade, float peso) {
+    public LoboDeFenris(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

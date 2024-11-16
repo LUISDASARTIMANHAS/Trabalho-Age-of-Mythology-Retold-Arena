@@ -13,7 +13,7 @@ public class Hydra extends TipoGuerreiroGregos {
     //cabeça nova gerada, além de mais 20 pontos de recuperação de energia para si mesmo (se a
     //hidra não tiver sido atacada ainda, ou seja, tiver os 100 pontos de energia, nada acontece).
 
-    public Hydra(String nome, int idade, float peso) {
+    public Hydra(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

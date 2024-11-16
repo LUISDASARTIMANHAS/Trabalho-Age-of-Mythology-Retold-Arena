@@ -10,7 +10,7 @@ import Arena.Arena;
 public class MortoVivo extends TipoGuerreiroEgipicios {
 //    O morto-vivo “nasce” com o nome, idade e peso do guerreiro adversário morto
     
-    public MortoVivo(String nome, int idade, float peso) {
+    public MortoVivo(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

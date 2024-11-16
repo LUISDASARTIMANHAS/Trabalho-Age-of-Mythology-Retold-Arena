@@ -14,7 +14,7 @@ public class Ciclope extends TipoGuerreiroGregos{
 //o primeiro a atacar não vai permitir que o adversário ataque, mas recebe o ataque do
 //atacante seguinte da fila inimiga).
 
-    public Ciclope(String nome, int idade, float peso) {
+    public Ciclope(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

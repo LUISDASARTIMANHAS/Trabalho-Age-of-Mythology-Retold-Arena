@@ -21,7 +21,7 @@ public class Prometeano extends TipoGuerreiroAtlantes {
 //descentes do prometeano é a concatenação no nome do prometeano que o gerou com o
 //número 1 ou 2 (dependendo se ele é o primeiro ou segundo descendente).
 
-    public Prometeano(String nome, int idade, float peso) {
+    public Prometeano(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

@@ -15,7 +15,7 @@ public class Anubita extends TipoGuerreiroEgipicios {
     //    Anubita: possui ataque de 15 pontos de energia, mas ataca 2 vezes. Ataca o primeiro
     //guerreiro e depois salta para o final da fila e ataca o último guerreiro da fila adversária.
     
-    public Anubita(String nome, int idade, float peso) {
+    public Anubita(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

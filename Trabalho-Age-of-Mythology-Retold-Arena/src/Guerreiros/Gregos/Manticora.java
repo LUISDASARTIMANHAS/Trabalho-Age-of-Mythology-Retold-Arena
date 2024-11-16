@@ -16,7 +16,7 @@ public class Manticora extends TipoGuerreiroGregos {
 //filas 2 e 4. Se estiver na fila 4, acerta o inimigo da fila 4 e da fila 3. O inimigo atacado na
 //mesma linha recebe dano de 30, os inimigos das linhas próximas recebem dano de 15
     
-    public Manticora(String nome, int idade, float peso) {
+    public Manticora(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

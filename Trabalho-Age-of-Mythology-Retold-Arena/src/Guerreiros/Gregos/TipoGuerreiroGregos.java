@@ -13,7 +13,7 @@ import Guerreiros.TipoGuerreiro;
  */
 public abstract class TipoGuerreiroGregos extends TipoGuerreiro {
 
-    public TipoGuerreiroGregos(String nome, int idade, float peso) {
+    public TipoGuerreiroGregos(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

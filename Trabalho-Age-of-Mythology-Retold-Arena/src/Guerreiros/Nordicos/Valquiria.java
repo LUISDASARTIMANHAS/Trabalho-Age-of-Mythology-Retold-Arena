@@ -16,7 +16,7 @@ public class Valquiria extends TipoGuerreiroNordicos{
 //seu ataque retira 20 pontos de energia. Após atacar, o aliado que estiver após ela, na fila,
 //recupera 20 pontos de energia.
 
-    public Valquiria(String nome, int idade, float peso) {
+    public Valquiria(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

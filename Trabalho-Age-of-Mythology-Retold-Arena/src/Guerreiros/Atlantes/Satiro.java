@@ -15,7 +15,7 @@ public class Satiro extends TipoGuerreiroAtlantes{
     //    Sátiro: são guerreiros que utilizam lanças para atacar a distância. Quando atacam tiram
     //apenas 10 pontos de energia, entretanto acertam todos os guerreiros da fila adversária.
     
-    public Satiro(String nome, int idade, float peso) {
+    public Satiro(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

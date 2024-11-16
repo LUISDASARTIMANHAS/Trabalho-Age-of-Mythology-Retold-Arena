@@ -21,7 +21,7 @@ public class Mumia extends TipoGuerreiroEgipicios {
 //morta, idade = 0 e peso = 60.
 
     
-    public Mumia(String nome, int idade, float peso) {
+    public Mumia(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 

@@ -14,7 +14,7 @@ public class GiganteDePedra extends TipoGuerreiroNordicos {
     //filas dos adversários. Se 2 Gigantes de Pedra ativarem a habilidade (em filas diferentes) o
     //último a ativar é o que será atacado.
     
-    public GiganteDePedra(String nome, int idade, float peso) {
+    public GiganteDePedra(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
 
