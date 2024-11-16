@@ -4,21 +4,26 @@
  */
 package Guerreiros.Gregos;
 
-import Guerreiros.TipoGuerreiro;
+import Arena.Arena;
 
-public class Hydra extends TipoGuerreiro{
+public class Hydra extends TipoGuerreiroGregos {
+    //Hidra: parece um dinossauro aquático, ganha uma cabeça para cada inimigo que mata. Seu
+    //ataque inicial é de 50 pontos de energia, mas ganha mais 5 pontos de ataque para cada
+    //cabeça nova gerada, além de mais 20 pontos de recuperação de energia para si mesmo (se a
+    //hidra não tiver sido atacada ainda, ou seja, tiver os 100 pontos de energia, nada acontece).
 
     public Hydra(String nome, int idade, float peso) {
         super(nome, idade, peso);
     }
 
     @Override
-    public void ataque(Arena.Arena arena) {
+    public void ataque(Arena arena) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void onEntityDie(Arena.Arena arena) {
+    public void onEntityDie(Arena arena) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

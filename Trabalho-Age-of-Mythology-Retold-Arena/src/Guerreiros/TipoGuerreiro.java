@@ -12,14 +12,23 @@ import Arena.Arena;
  */
 public abstract class TipoGuerreiro {
 
-    protected Arena Arena;
+//    Primeiramente é necessário definir o que é um Guerreiro.Um Guerreiro é alguém
+//    que luta e possui obrigatoriamente
+//    :
+//• Nome
+//    • Idade
+//    • Peso
+//    • Energia
+//    : que deve ser inicializada em 100 no momento da criação do Guerreiro(por padrão os guerreiros possuem energia em 100 unidades) 
+//    Guerreiros morrem quando sua energia fica menor ou igual a 0 (nesse caso, por padrão são retirados da sua respectiva fila)
+
     private String nome;
     private int idade;
     private float peso;
     private int energia = 100;
     private boolean entityEnvenenada = false;
     private boolean entityRegenerar = false;
-    private boolean entity = false;
+    private boolean entityDie = false;
 
     public TipoGuerreiro(String nome, int idade, float peso) {
         this.nome = nome;
@@ -55,10 +64,6 @@ public abstract class TipoGuerreiro {
         this.peso = peso;
     }
 
-    public Arena getArena() {
-        return Arena;
-    }
-
     public boolean isEntityEnvenenada() {
         return entityEnvenenada;
     }
@@ -66,13 +71,16 @@ public abstract class TipoGuerreiro {
     public boolean isEntityRegenerar() {
         return entityRegenerar;
     }
-
-    public boolean isEntity() {
-        return entity;
+    
+    public void reduzirEnergia(int valor) {
+        energia = energia - valor;
+        if (energia <= 0) {
+            energia = 0;
+        }
     }
-    
-    
+
     public abstract void ataque(Arena arena);
+
     public abstract void onEntityDie(Arena arena);
 
 }
