@@ -9,9 +9,9 @@ package Arena;
 import java.util.LinkedList;
 
 public class FilaManager {
-
+    // gerencia as filas de guerreiros para cada lado
     // Lista principal de filas
-    LinkedList<FilaManagerDeGuerreiros> filas;
+    private LinkedList<FilaManagerDeGuerreiros> filas;
 
     // Construtor da classe FilaManager
     public FilaManager() {
@@ -20,17 +20,31 @@ public class FilaManager {
 
     // Método para adicionar uma fila de guerreiros à lista principal
     public void adicionarFila(FilaManagerDeGuerreiros fila) {
-        filas.add(fila);
+        getFilas().add(fila);
     }
 
     // Método para exibir todas as filas de guerreiros
     public void exibirTodasAsFilas() {
         int filaIndex = 1;
-        for (FilaManagerDeGuerreiros fila : filas) {
+        for (FilaManagerDeGuerreiros fila : getFilas()) {
             System.out.println("Fila " + filaIndex + ":");
             fila.exibirFila();
             filaIndex++;
             System.out.println();
         }
+    }
+
+    /**
+     * @return the filas
+     */
+    public LinkedList<FilaManagerDeGuerreiros> getFilas() {
+        return filas;
+    }
+
+    /**
+     * @param filas the filas to set
+     */
+    public void setFilas(LinkedList<FilaManagerDeGuerreiros> filas) {
+        this.filas = filas;
     }
 }

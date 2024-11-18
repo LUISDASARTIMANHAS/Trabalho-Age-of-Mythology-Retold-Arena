@@ -1,4 +1,3 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -25,34 +24,31 @@ import static utils.LeituraDeArquivo.fReadString;
 import static utils.LeituraDeArquivo.fopen;
 
 public class Arena {
-
+    private int maxLados;
+    // Exemplo: máximo de 2 lados
+    // Exemplo: máximo de 2 lados
+    // 4 filas por lado (pode ser alterado conforme necessário)
+     // Definindo as variáveis para os intervalos de lado e fila
+    private int maxFilasPorLado;  
     // Filas de guerreiros que irão lutar na arena
-    private LinkedList<FilaManagerDeGuerreiros> filas;
+    private FilaManager gestorDeFilas;
 
     // Variáveis para controlar o turno
     private int turnoAtual;
     private boolean jogoAtivo;
 
+    
+    
     // Construtor da Arena
     public Arena() {
-        this.filas = new LinkedList<>();
+        this.maxFilasPorLado = 4;
+        this.maxLados = 2;
+        this.gestorDeFilas = new FilaManager();
         this.turnoAtual = 1;  // Começa o jogo no primeiro turno
         this.jogoAtivo = true;  // O jogo começa ativo
     }
 
-    // Método para adicionar uma fila de guerreiros à arena
-    public void adicionarFila(FilaManagerDeGuerreiros fila) {
-        filas.add(fila);
-    }
-
-    // Exibe todas as filas de guerreiros
-    public void exibirFilas() {
-        for (int i = 0; i < filas.size(); i++) {
-            System.out.println("Fila " + (i + 1) + ":");
-            filas.get(i).exibirFila();
-            System.out.println();
-        }
-    }
+    
 
     // Inicia o combate, alternando entre turnos
     public void iniciarCombate() {
@@ -120,7 +116,7 @@ public class Arena {
     // Método para exibir o estado da arena (se necessário)
     public void exibirEstado() {
         System.out.println("Estado da Arena: Turno " + turnoAtual);
-        exibirFilas();
+        this.gestorDeFilas.exibirTodasAsFilas();
     }
 
     public void exibirDados() {
@@ -167,8 +163,8 @@ public class Arena {
             try {
                 TipoGuerreiro guerreiro = criarGuerreiro(lado, tipo, nome, idade, peso);
                 fila.adicionarGuerreiro(guerreiro); // Adiciona o guerreiro na fila
-            } catch (RuntimeException e) {
-                System.out.println("Erro ao criar guerreiro: " + e.getMessage());
+            } catch (RuntimeException err) {
+                System.out.println("Erro ao criar guerreiro: " + err.getMessage());
             }
 
         }
@@ -226,18 +222,14 @@ public class Arena {
     }
 
     // Método para ler e processar os arquivos de guerreiros
-    public static void lerArqGuerreiro(FilaManager arena) {
-        // Definindo as variáveis para os intervalos de lado e fila
-        int maxLados = 2;  // Exemplo: máximo de 2 lados
-        int maxFilasPorLado = 4;  // 4 filas por lado (pode ser alterado conforme necessário)
-
+    public void lerArqGuerreiro() {
         // Loop pelos lados
-        for (int lado = 1; lado <= maxLados; lado++) {
+        for (int lado = 1; lado <= getMaxLados(); lado++) {
 
             // Loop pelas filas de cada lado
-            for (int fila = 1; fila <= maxFilasPorLado; fila++) {
+            for (int filaNum = 1; filaNum <= getMaxFilasPorLado(); filaNum++) {
                 // Gerar o nome do arquivo baseado no lado e fila
-                String arquivo = "lado" + lado + fila + ".txt";
+                String arquivo = "lado" + lado + filaNum + ".txt";
                 // Abrir o arquivo
                 Scanner file = fopen(arquivo);
 
@@ -247,25 +239,42 @@ public class Arena {
                 }
 
                 // Criar a fila de guerreiros para este arquivo
-                FilaManagerDeGuerreiros filaDeGuerreiros = new FilaManagerDeGuerreiros();
+                FilaManagerDeGuerreiros fila = new FilaManagerDeGuerreiros();
                 // Ler os guerreiros e adicionar à fila
-                lerGuerreiro(lado, file, filaDeGuerreiros);
+                lerGuerreiro(lado, file, fila);
                 // Adicionar a fila à arena
-                arena.adicionarFila(filaDeGuerreiros);
+                this.gestorDeFilas.adicionarFila(fila);
                 // Fechar o arquivo após a leitura
                 file.close();
             }
         }
     }
 
-    // Método main para testar
-    public static void main(String[] args) {
-        FilaManager arena = new FilaManager();
+    /**
+     * @return the maxLados
+     */
+    public int getMaxLados() {
+        return maxLados;
+    }
 
-        // Lê os guerreiros e organiza as filas na arena
-        lerArqGuerreiro(arena);
+    /**
+     * @param maxLados the maxLados to set
+     */
+    public void setMaxLados(int maxLados) {
+        this.maxLados = maxLados;
+    }
 
-        // Exibe os dados dos guerreiros da arena
-        arena.exibirTodasAsFilas();
+    /**
+     * @return the maxFilasPorLado
+     */
+    public int getMaxFilasPorLado() {
+        return maxFilasPorLado;
+    }
+
+    /**
+     * @param maxFilasPorLado the maxFilasPorLado to set
+     */
+    public void setMaxFilasPorLado(int maxFilasPorLado) {
+        this.maxFilasPorLado = maxFilasPorLado;
     }
 }

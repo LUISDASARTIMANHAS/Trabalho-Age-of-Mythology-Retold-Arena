@@ -28,6 +28,12 @@ public class LeituraDeArquivo {
     public static int fReadInt(Scanner file) {
         return file.nextInt();
     }
+     public static double fReadDouble(Scanner file) {
+        return file.nextDouble();
+    }
+      public static float fReadFloat(Scanner file) {
+        return file.nextFloat();
+    }
 
     public static String fReadString(Scanner file) {
         return file.next();

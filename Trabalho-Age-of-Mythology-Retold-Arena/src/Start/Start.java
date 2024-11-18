@@ -14,14 +14,12 @@ import Arena.Arena;
 public class Start {
     
     public static void main(String[] args) {
-        // Criando uma instância da Arena
         Arena arena = new Arena();
         
-        // Simulação de leitura dos guerreiros (leitura de arquivos pode ser simulada ou implementada)
-        // Exemplo de leitura de guerreiros:
-        // LeituraDeArquivo.lerArqGuerreiro(arena, "1");  // Lê o arquivo lado11.txt e lado12.txt
-        
-        // Exibe os dados de ambos os lados
-        arena.exibirDados();
+        // Lê os guerreiros e organiza as filas na arena
+        arena.lerArqGuerreiro();
+//
+//        // Exibe os dados dos guerreiros da arena
+//        arena.exibirTodasAsFilas();
     }
 }

@@ -83,11 +83,11 @@ public abstract class TipoGuerreiro {
     // Sobrescrevendo o método toString na classe base
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + // Nome da classe (ex. Ciclope, Manticora, etc.)
-                "Nome='" + nome + '\'' +
-                ", Idade=" + idade +
-                ", Peso=" + peso +
-                '}';
+    //        Manticora: Nita, 30 anos, 70 kilos
+        return getClass().getSimpleName() + ": " + // Nome da classe (ex. Ciclope, Manticora, etc.)
+                nome +", "+ 
+                idade + " anos, "+ 
+                peso + " kilos";
     }
 
     public abstract void ataque(Arena arena);
