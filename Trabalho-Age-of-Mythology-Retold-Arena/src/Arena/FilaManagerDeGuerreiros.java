@@ -9,27 +9,50 @@ package Arena;
  *
  * @author LUIS DAS ARTIMANHAS
  */
-
 import Guerreiros.TipoGuerreiro;
 import java.util.LinkedList;
 
 public class FilaManagerDeGuerreiros {
 //    gerencia a fila que tem algum guerreiro
+
     private LinkedList<TipoGuerreiro> fila;
     private double pesoTotalDaFila;
+    private int qtdeDeGuerreiros;
+//    taget do lado onde a fila esta
+    private int lado;
 
-    public FilaManagerDeGuerreiros() {
-        this.pesoTotalDaFila = 0;
+    public FilaManagerDeGuerreiros(int lado) {
+        this.qtdeDeGuerreiros = 0;
+        this.lado = lado;
         this.fila = new LinkedList<TipoGuerreiro>();
     }
 
+    // Getters
+    // Getter para a fila
+    public LinkedList<TipoGuerreiro> getFila() {
+        return fila;
+    }
+
+    public double getPesoTotalDaFila() {
+        return somarPesoDaFila();
+    }
+
+    public int getQtdeDeGuerreiros() {
+        return qtdeDeGuerreiros;
+    }
+
+    // Funções
     // Adiciona um guerreiro à fila
     public void adicionarGuerreiro(TipoGuerreiro guerreiro) {
-        if (getFila().size() < 4) {
-            getFila().add(guerreiro);
-        } else {
-            System.out.println("Fila cheia.");
-        }
+        getFila().add(guerreiro);
+
+    }
+
+    public void exibirEstadoFila() {
+        System.out.println("Estado da fila (Lado " + lado + "):");
+        System.out.println("Quantidade de Guerreiros: " + getQtdeDeGuerreiros());
+        System.out.println("Peso Total da Fila: " + somarPesoDaFila());
+        exibirFila();  // Exibe os guerreiros na fila
     }
 
     // Exibe todos os guerreiros da fila
@@ -38,34 +61,17 @@ public class FilaManagerDeGuerreiros {
             System.out.println(guerreiro);
         }
     }
-    
-    public void somarPesoDaFila() {
+
+    public double somarPesoDaFila() {
+        pesoTotalDaFila = 0;
         for (TipoGuerreiro guerreiro : getFila()) {
             pesoTotalDaFila += guerreiro.getPeso();
         }
+        return pesoTotalDaFila;
     }
 
     // Remover guerreiros mortos
     public void removerGuerreirosMortos() {
         getFila().removeIf(guerreiro -> guerreiro.getEnergia() <= 0);
-    }
-
-    // Getter para a fila
-    public LinkedList<TipoGuerreiro> getFila() {
-        return fila;
-    }
-
-    /**
-     * @param fila the fila to set
-     */
-    public void setFila(LinkedList<TipoGuerreiro> fila) {
-        this.fila = fila;
-    }
-
-    /**
-     * @return the pesoTotalDaFila
-     */
-    public double getPesoTotalDaFila() {
-        return pesoTotalDaFila;
     }
 }

@@ -6,6 +6,7 @@
 package Start;
 
 import Arena.Arena;
+import Arena.FilaManager;
 
 /**
  *
@@ -15,10 +16,16 @@ public class Start {
     
     public static void main(String[] args) {
         Arena arena = new Arena();
+        FilaManager filaManager = arena.getGestorDeFilas();
         
+//        letra A
         // Lê os guerreiros e organiza as filas na arena
         arena.lerArqGuerreiro();
+        
+//        Letra B
+        arena.exibirPesosDasRacas();
 //
+//        letra C
 //        // Exibe os dados dos guerreiros da arena
 //        arena.exibirTodasAsFilas();
     }

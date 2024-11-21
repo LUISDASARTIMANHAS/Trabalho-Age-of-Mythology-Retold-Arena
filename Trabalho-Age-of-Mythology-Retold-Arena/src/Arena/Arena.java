@@ -17,100 +17,115 @@ import Guerreiros.Nordicos.GiganteDePedra;
 import Guerreiros.Nordicos.LoboDeFenris;
 import Guerreiros.Nordicos.Valquiria;
 import Guerreiros.TipoGuerreiro;
-import java.util.LinkedList;
 import java.util.Scanner;
 import static utils.LeituraDeArquivo.fReadInt;
 import static utils.LeituraDeArquivo.fReadString;
 import static utils.LeituraDeArquivo.fopen;
 
 public class Arena {
+
     private int maxLados;
-    // Exemplo: máximo de 2 lados
-    // Exemplo: máximo de 2 lados
-    // 4 filas por lado (pode ser alterado conforme necessário)
-     // Definindo as variáveis para os intervalos de lado e fila
-    private int maxFilasPorLado;  
+    private int maxFilasPorLado;
+    private double pesoTotal = 0;
     // Filas de guerreiros que irão lutar na arena
     private FilaManager gestorDeFilas;
-
     // Variáveis para controlar o turno
     private int turnoAtual;
     private boolean jogoAtivo;
 
-    
-    
     // Construtor da Arena
     public Arena() {
+        // 4 filas por lado (pode ser alterado conforme necessário)
+        // Definindo as variáveis para os intervalos de lado e fila
         this.maxFilasPorLado = 4;
+        // Exemplo: máximo de 2 lados
         this.maxLados = 2;
         this.gestorDeFilas = new FilaManager();
         this.turnoAtual = 1;  // Começa o jogo no primeiro turno
         this.jogoAtivo = true;  // O jogo começa ativo
     }
 
-    
+    //  Getters
+    /**
+     * @return the maxLados
+     */
+    public int getMaxLados() {
+        return maxLados;
+    }
 
+    /**
+     * @return the maxFilasPorLado
+     */
+    public int getMaxFilasPorLado() {
+        return maxFilasPorLado;
+    }
+
+    public double getPesoTotal() {
+        return pesoTotal;
+    }
+
+    public FilaManager getGestorDeFilas() {
+        return gestorDeFilas;
+    }
+
+    public int getTurnoAtual() {
+        return turnoAtual;
+    }
+
+    public boolean isJogoAtivo() {
+        this.jogoAtivo = gestorDeFilas.verificarEstadoJogo();
+        return jogoAtivo;
+    }
+
+    //Funções
     // Inicia o combate, alternando entre turnos
     public void iniciarCombate() {
+
         while (jogoAtivo) {
             System.out.println("Turno " + turnoAtual);
             executarTurno();
+
             turnoAtual++;
-            verificarEstadoJogo();
+            jogoAtivo = gestorDeFilas.verificarEstadoJogo();
         }
     }
 
     // Executa o turno de cada fila
     private void executarTurno() {
-        for (FilaManagerDeGuerreiros fila : filas) {
-            for (TipoGuerreiro guerreiro : fila.getFila()) {
+        int numeroDeFilas = gestorDeFilas.getFilas().size();
+        int lado1Turno = 0;  // Índice para lado 1
+        int lado2Turno = numeroDeFilas / 2;  // Índice para lado 2
+
+        while (lado1Turno < numeroDeFilas / 2 && lado2Turno < numeroDeFilas) {
+            // Primeira fila do lado 1 ataca
+            FilaManagerDeGuerreiros filaLado1 = gestorDeFilas.getFilas().get(lado1Turno);
+            for (TipoGuerreiro guerreiro : filaLado1.getFila()) {
                 if (guerreiro.getEnergia() > 0) {
                     guerreiro.ataque(this);  // Cada guerreiro realiza um ataque
                 }
             }
-        }
-    }
 
-    // Verifica se o jogo deve continuar ou se terminou
-    private void verificarEstadoJogo() {
-        // Exemplo: se todas as filas estiverem vazias (sem guerreiros vivos), o jogo termina
-        boolean jogoConcluido = true;
-        for (FilaManagerDeGuerreiros fila : filas) {
-            for (TipoGuerreiro guerreiro : fila.getFila()) {
+            // Segunda fila do lado 2 ataca
+            FilaManagerDeGuerreiros filaLado2 = gestorDeFilas.getFilas().get(lado2Turno);
+            for (TipoGuerreiro guerreiro : filaLado2.getFila()) {
                 if (guerreiro.getEnergia() > 0) {
-                    jogoConcluido = false;  // Se houver algum guerreiro vivo, o jogo continua
-                    break;
+                    guerreiro.ataque(this);  // Cada guerreiro realiza um ataque
                 }
             }
-        }
 
-        if (jogoConcluido) {
-            jogoAtivo = false;  // O jogo terminou
-            System.out.println("O jogo terminou!");
-        }
-    }
+            // Remover guerreiros mortos
+            filaLado1.removerGuerreirosMortos();
+            filaLado2.removerGuerreirosMortos();
 
-    // Método para remover guerreiros mortos das filas
-    public void removerGuerreirosMortos() {
-        for (FilaManagerDeGuerreiros fila : filas) {
-            fila.removerGuerreirosMortos();
-        }
-    }
+            // Avança para o próximo turno
+            lado1Turno++;
+            lado2Turno++;
 
-    // Soma os pesos de todos os guerreiros de um lado
-    public float somarPesos(LinkedList<FilaManagerDeGuerreiros> filas) {
-        float somaPesos = 0;
-        for (FilaManagerDeGuerreiros fila : filas) {
-            for (TipoGuerreiro guerreiro : fila.getFila()) {
-                somaPesos += guerreiro.getPeso();
+            // Verifica se o jogo terminou
+            if (!isJogoAtivo()) {
+                break;
             }
         }
-        return somaPesos;
-    }
-
-    // Getter para as filas
-    public LinkedList<FilaManagerDeGuerreiros> getFilas() {
-        return filas;
     }
 
     // Método para exibir o estado da arena (se necessário)
@@ -119,8 +134,12 @@ public class Arena {
         this.gestorDeFilas.exibirTodasAsFilas();
     }
 
-    public void exibirDados() {
-        System.out.println("LADO 1:");
+    public void exibirPesosDasRacas() {
+//        exemplo
+//        Gregos e Nórdicos pesam 15500 kilos
+//        Atlantes e Egípcios pesam 20335 kilos
+        System.out.println("Gregos e Nórdicos pesam " + gestorDeFilas.somarPesosLado1());
+        System.out.println("Atlantes e Egípcios pesam " + gestorDeFilas.somarPesosLado2());
     }
 
     public TipoGuerreiro guerreiroMaisVelho() {
@@ -239,7 +258,7 @@ public class Arena {
                 }
 
                 // Criar a fila de guerreiros para este arquivo
-                FilaManagerDeGuerreiros fila = new FilaManagerDeGuerreiros();
+                FilaManagerDeGuerreiros fila = new FilaManagerDeGuerreiros(lado);
                 // Ler os guerreiros e adicionar à fila
                 lerGuerreiro(lado, file, fila);
                 // Adicionar a fila à arena
@@ -248,33 +267,5 @@ public class Arena {
                 file.close();
             }
         }
-    }
-
-    /**
-     * @return the maxLados
-     */
-    public int getMaxLados() {
-        return maxLados;
-    }
-
-    /**
-     * @param maxLados the maxLados to set
-     */
-    public void setMaxLados(int maxLados) {
-        this.maxLados = maxLados;
-    }
-
-    /**
-     * @return the maxFilasPorLado
-     */
-    public int getMaxFilasPorLado() {
-        return maxFilasPorLado;
-    }
-
-    /**
-     * @param maxFilasPorLado the maxFilasPorLado to set
-     */
-    public void setMaxFilasPorLado(int maxFilasPorLado) {
-        this.maxFilasPorLado = maxFilasPorLado;
     }
 }
