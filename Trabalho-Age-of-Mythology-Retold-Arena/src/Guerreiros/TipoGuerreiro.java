@@ -22,7 +22,6 @@ public abstract class TipoGuerreiro {
 //    • Energia
 //    : que deve ser inicializada em 100 no momento da criação do Guerreiro(por padrão os guerreiros possuem energia em 100 unidades) 
 //    Guerreiros morrem quando sua energia fica menor ou igual a 0 (nesse caso, por padrão são retirados da sua respectiva fila)
-
     private String nome;
     private int idade;
     private double peso;
@@ -39,6 +38,10 @@ public abstract class TipoGuerreiro {
 
     public int getEnergia() {
         return energia;
+    }
+
+    public void setEnergia(int energia) {
+        this.energia = energia;
     }
 
     public String getNome() {
@@ -73,25 +76,29 @@ public abstract class TipoGuerreiro {
         return entityRegenerar;
     }
     
-    public void reduzirEnergia(int valor) {
-        energia = energia - valor;
-        if (energia <= 0) {
-            energia = 0;
+    public void darDano(TipoGuerreiro guerreiro, int dano){
+        guerreiro.setEnergia(guerreiro.getEnergia() - dano);
+        if (guerreiro.getEnergia() <= 0) {
+//            não deixa a energia negativar
+            guerreiro.setEnergia(0);
         }
     }
     
+    public void regenerar(TipoGuerreiro guerreiro,int quantidade) {
+        guerreiro.setEnergia(guerreiro.getEnergia() + quantidade);
+    }
+
     // Sobrescrevendo o método toString na classe base
     @Override
     public String toString() {
-    //        Manticora: Nita, 30 anos, 70 kilos
-        return getClass().getSimpleName() + ": " + // Nome da classe (ex. Ciclope, Manticora, etc.)
-                nome +", "+ 
-                idade + " anos, "+ 
-                peso + " kilos";
+        //        Manticora: Nita, 30 anos, 70 kilos
+        return getClass().getSimpleName() + ": "
+                + // Nome da classe (ex. Ciclope, Manticora, etc.)
+                nome + ", "
+                + idade + " anos, "
+                + peso + " kilos";
     }
 
-    public abstract void ataque(Arena arena);
-
-    public abstract void onEntityDie(Arena arena);
-
+    public abstract void ataque(Arena arena,TipoGuerreiro defenders);
+    public abstract void forcarAtaque(Arena arena,TipoGuerreiro defenders);
 }

@@ -16,7 +16,7 @@ public class LeituraDeArquivo {
         try {
             FileInputStream file = new FileInputStream(localFile);
             Scanner scan = new Scanner(file);
-            Console.log("INFO: Arquivo " + localFile + " aberto. Bom uso!");
+//            Console.log("INFO: Arquivo " + localFile + " aberto. Bom uso!");
             return scan;
         } catch (FileNotFoundException error) {
             Console.error("Erro: Arquivo não encontrado. ERR:" + error);

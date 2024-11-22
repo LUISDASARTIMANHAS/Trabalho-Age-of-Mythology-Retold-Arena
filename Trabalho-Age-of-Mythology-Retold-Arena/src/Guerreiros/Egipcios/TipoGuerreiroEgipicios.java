@@ -5,7 +5,6 @@
  */
 package Guerreiros.Egipcios;
 
-import Arena.Arena;
 import Guerreiros.TipoGuerreiro;
 
 /**
@@ -17,16 +16,5 @@ public abstract class TipoGuerreiroEgipicios extends TipoGuerreiro {
     public TipoGuerreiroEgipicios(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
-
-    @Override
-    public void ataque(Arena arena) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void onEntityDie(Arena arena) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     
 }

@@ -6,6 +6,7 @@
 package Guerreiros.Egipcios;
 
 import Arena.Arena;
+import Guerreiros.TipoGuerreiro;
 
 
 public class HomemEscorpiao extends TipoGuerreiroEgipicios {
@@ -22,13 +23,12 @@ public class HomemEscorpiao extends TipoGuerreiroEgipicios {
     }
 
     @Override
-    public void ataque(Arena arena) {
+    public void ataque(Arena arena,TipoGuerreiro defenders) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void onEntityDie(Arena arena) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void forcarAtaque(Arena arena,TipoGuerreiro defenders) {
+        ataque(arena, defenders);
     }
-
 }

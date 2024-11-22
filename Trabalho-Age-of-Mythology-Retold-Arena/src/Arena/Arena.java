@@ -17,6 +17,7 @@ import Guerreiros.Nordicos.GiganteDePedra;
 import Guerreiros.Nordicos.LoboDeFenris;
 import Guerreiros.Nordicos.Valquiria;
 import Guerreiros.TipoGuerreiro;
+import java.util.Iterator;
 import java.util.Scanner;
 import static utils.LeituraDeArquivo.fReadInt;
 import static utils.LeituraDeArquivo.fReadString;
@@ -97,25 +98,11 @@ public class Arena {
         int lado2Turno = numeroDeFilas / 2;  // Índice para lado 2
 
         while (lado1Turno < numeroDeFilas / 2 && lado2Turno < numeroDeFilas) {
-            // Primeira fila do lado 1 ataca
+            // Primeiro lado
             FilaManagerDeGuerreiros filaLado1 = gestorDeFilas.getFilas().get(lado1Turno);
-            for (TipoGuerreiro guerreiro : filaLado1.getFila()) {
-                if (guerreiro.getEnergia() > 0) {
-                    guerreiro.ataque(this);  // Cada guerreiro realiza um ataque
-                }
-            }
-
-            // Segunda fila do lado 2 ataca
+            // Segundo lado
             FilaManagerDeGuerreiros filaLado2 = gestorDeFilas.getFilas().get(lado2Turno);
-            for (TipoGuerreiro guerreiro : filaLado2.getFila()) {
-                if (guerreiro.getEnergia() > 0) {
-                    guerreiro.ataque(this);  // Cada guerreiro realiza um ataque
-                }
-            }
-
-            // Remover guerreiros mortos
-            filaLado1.removerGuerreirosMortos();
-            filaLado2.removerGuerreirosMortos();
+            efetuarAtaque(filaLado1,filaLado2);
 
             // Avança para o próximo turno
             lado1Turno++;
@@ -128,10 +115,65 @@ public class Arena {
         }
     }
 
+    // Método para efetuar os ataques
+    // Método para efetuar os ataques
+    private void efetuarAtaque(FilaManagerDeGuerreiros Filamatadores, FilaManagerDeGuerreiros FilaDefenders) {
+        // Iterando sobre os matadores
+        Iterator<TipoGuerreiro> iteradorAtacante = Filamatadores.getFila().iterator();
+
+        // Iterando sobre os defensores
+        Iterator<TipoGuerreiro> iteradorDefensor = FilaDefenders.getFila().iterator();
+
+        // Enquanto houver matadores e defenders
+        while (iteradorAtacante.hasNext() && iteradorDefensor.hasNext()) {
+            TipoGuerreiro matadores = iteradorAtacante.next();
+            TipoGuerreiro defenders = iteradorDefensor.next();
+
+            // Verifica se o matadores e o defenders não estão mortos
+            if (matadores.getEnergia() > 0 && defenders.getEnergia() > 0) {
+                // O matadores realiza o ataque
+                matadores.ataque(this,defenders);
+            }
+        }
+    }
+
+    // Método para verificar se o inimigo morreu
+    public boolean inimigoMorreu(TipoGuerreiro guerreiro) {
+        if (guerreiro.getEnergia() <= 0) {  // Verifica se a energia do inimigo chegou a 0 ou abaixo
+            System.out.println(guerreiro.getNome() + " foi derrotado!");
+            return true;  // Retorna verdadeiro se o inimigo morreu
+        }
+        return false;  // Retorna falso se o inimigo ainda está vivo
+    }
+
     // Método para exibir o estado da arena (se necessário)
     public void exibirEstado() {
         System.out.println("Estado da Arena: Turno " + turnoAtual);
         this.gestorDeFilas.exibirTodasAsFilas();
+    }
+
+    public void exibirFilas() {
+        int numeroDeFilas = gestorDeFilas.getFilas().size();
+
+        for (int i = 0; i < numeroDeFilas; i++) {
+            System.out.println("Fila " + (i + 1) + ":");
+            gestorDeFilas.getFilas().get(i).exibirFila();
+            System.out.println();
+        }
+    }
+
+    public void exibirGuerreiroMaisVeio() {
+        TipoGuerreiro maisVelho = gestorDeFilas.guerreiroMaisVelho();
+//           exemplo
+//        O Gigante de Pedra Tonton é o mais velho e tem 200 anos
+        System.out.println("O "
+                + maisVelho.getClass().getSimpleName()
+                + " " + maisVelho.getNome()
+                + " é o mais velho e tem "
+                + maisVelho.getIdade()
+                + " anos"
+        );
+        System.out.println();
     }
 
     public void exibirPesosDasRacas() {
@@ -140,6 +182,7 @@ public class Arena {
 //        Atlantes e Egípcios pesam 20335 kilos
         System.out.println("Gregos e Nórdicos pesam " + gestorDeFilas.somarPesosLado1());
         System.out.println("Atlantes e Egípcios pesam " + gestorDeFilas.somarPesosLado2());
+        System.out.println();
     }
 
     public TipoGuerreiro guerreiroMaisVelho() {
@@ -171,12 +214,6 @@ public class Arena {
             nome = fReadString(file);
             idade = fReadInt(file);
             peso = fReadInt(file);
-            System.out.println(
-                    "Guerreiro lido: " + nome
-                    + ", Tipo: " + tipo
-                    + ", Idade: " + idade
-                    + ", Peso: " + peso);
-            System.out.println();
 
             // Criar o guerreiro de acordo com o tipo e adicionar à fila
             try {

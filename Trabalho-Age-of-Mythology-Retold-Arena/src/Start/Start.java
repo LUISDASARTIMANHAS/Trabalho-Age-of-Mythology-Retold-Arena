@@ -13,19 +13,21 @@ import Arena.FilaManager;
  * @author LUIS DAS ARTIMANHAS
  */
 public class Start {
-    
+
     public static void main(String[] args) {
         Arena arena = new Arena();
         FilaManager filaManager = arena.getGestorDeFilas();
-        
-//        letra A
+
         // Lê os guerreiros e organiza as filas na arena
         arena.lerArqGuerreiro();
-        
+        arena.iniciarCombate();
+//        letra A
+        arena.exibirFilas();
 //        Letra B
         arena.exibirPesosDasRacas();
 //
 //        letra C
+        arena.exibirGuerreiroMaisVeio();
 //        // Exibe os dados dos guerreiros da arena
 //        arena.exibirTodasAsFilas();
     }

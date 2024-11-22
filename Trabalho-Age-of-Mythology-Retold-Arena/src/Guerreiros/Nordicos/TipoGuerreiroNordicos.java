@@ -16,6 +16,4 @@ public abstract class TipoGuerreiroNordicos extends TipoGuerreiro {
     public TipoGuerreiroNordicos(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
-
- 
 }
